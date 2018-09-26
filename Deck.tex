@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[14pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
@@ -59,12 +59,14 @@
 
   \imageframe{images/ancient_history.jpg}{Ancient history}
 
-  \begin{frame}{GAT infrastructure, circa 2016}
+  \begin{frame}{GAT infrastructure}
+  \framesubtitle{The year is 2016}
   \centering
   \includegraphics[width=8cm]{images/opsworks_diagram.png}
   \end{frame}
 
-  \begin{frame}{GAT infrastructure, pain points}
+  \begin{frame}{GAT infrastructure}
+  \framesubtitle{Pain points explained}
   \begin{itemize}
     \item Long deployment times
     \item Uncertainty of success before starting
@@ -129,7 +131,8 @@
 
   \imageframe{images/migrating_cranes.jpg}{Migrating to Kubernetes}
 
-  \begin{frame}{Moving to Kubernetes on GKE - why there?}
+  \begin{frame}{Moving to Kubernetes on GKE}
+  \framesubtitle{Why there?}
   \begin{itemize}
     \item Cluster deployment is completely automated
     \item Management is done by Google
@@ -143,7 +146,8 @@
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on GKE - the journey}
+  \begin{frame}{Moving to Kubernetes on GKE}
+  \framesubtitle{The journey}
   \begin{itemize}
     \item Docker images for applications
     \item CI pipeline modification
@@ -156,7 +160,8 @@
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on GKE - the end result}
+  \begin{frame}{Moving to Kubernetes on GKE}
+  \framesubtitle{The end result}
   \centering
   \includegraphics[width=8cm]{images/kubernetes_diagram.png}
 %  \begin{itemize}
@@ -166,7 +171,8 @@
 %  \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on GKE - no happy end}
+  \begin{frame}{Moving to Kubernetes on GKE}
+  \framesubtitle{No happy end}
   \begin{itemize}
     \item Bugs!
     \begin{itemize}
@@ -189,13 +195,15 @@
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on AWS - enter kops}
+  \begin{frame}{Moving to Kubernetes on AWS}
+  \framesubtitle{Enter kops}
   \begin{itemize}
     \item A~Kubernetes cluster bootstrapping utility
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on AWS - new challenges}
+  \begin{frame}{Moving to Kubernetes on AWS}
+  \framesubtitle{New challenges}
   \begin{itemize}
     \item Missing parts
     \begin{itemize}
