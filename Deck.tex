@@ -134,11 +134,11 @@
   \begin{frame}{Moving to Kubernetes on GKE}
   \framesubtitle{Why there?}
   \begin{itemize}
-    \item Cluster deployment is completely automated
-    \item Management is done by Google
-    \item Built in goodies
+    \item Automated cluster deployment
+    \item Management by Google
+    \item Built in goodies:
     \begin{itemize}
-      \item Authentication integrated with the rest of their cloud
+      \item Integrated authentication
       \item Centralized logging
       \item Cluster monitoring
       \item Container registry
@@ -151,10 +151,10 @@
   \begin{itemize}
     \item Docker images for applications
     \item CI pipeline modification
-    \item Helm charts to replace the currently used automation
-    \item Moving the apps one by one
+    \item Helm instead of Chef
+    \item Moving apps one by one
     \begin{itemize}
-      \item First on sandbox environments
+      \item Sandbox environments first
       \item No weird dependencies, only API communication
     \end{itemize}
   \end{itemize}
@@ -179,9 +179,8 @@
       \item Nodes crashing due to misconfigured journalctl
       \item Frequent networking problems
     \end{itemize}
-    \item Management is done by Google
+    \item Management by Google
     \begin{itemize}
-      \item Forced, automatic security updates on master nodes
       \item No way of accessing the machine
       \item Doesn't work? Too bad
     \end{itemize}
@@ -189,7 +188,7 @@
     \begin{itemize}
       \item Not possible to turn on alpha features
       \item Not possible to change node configuration
-      \item Even pulling an image before attaching a~node to the cluster is hard
+      \item Pulling an image before attaching a~node is hard
     \end{itemize}
   \item Waiting for Kubernetes security updates (CVE-2017-1002101 and it's 4 days)
   \end{itemize}
