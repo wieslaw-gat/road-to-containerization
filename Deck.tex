@@ -43,15 +43,17 @@
     \item About me
     \begin{itemize}
       \item DevOps engineer for Global App Testing since 2016
-      \item IT professional since 2011, industrial and banking clients
-      \item TODO: blah blah blah
+      \item IT professional since 2011
     \end{itemize}
+    \bigskip
     \item About this presentation
     \begin{itemize}
       \item Quick introduction
       \item Technology stack
       \item The migration talk
     \end{itemize}
+    \bigskip
+    \item Things are moving fast!
   \end{itemize}
   \end{frame}
 
@@ -76,6 +78,23 @@
   \end{itemize}
   \end{frame}
 
+  \begin{frame}{Gat infrastructure}
+  \framesubtitle{What next?}
+  \begin{itemize}
+    \item Improve existing infrastructure
+    \begin{itemize}
+      \item Vendor lock-in
+    \end{itemize}
+    \bigskip
+    \item Move to containers
+    \begin{itemize}
+      \item Save money
+      \item Lessen configuration complexity
+      \item Play with shiny new tools
+    \end{itemize}
+  \end{itemize}
+  \end{frame}
+
   % ---------------------------------- %
 
   \imageframe{images/container_landscape.jpg}{The container landscape}
@@ -90,6 +109,9 @@
           \item Container platform
           \item Lightweight virtual machines
           \item Packaging format
+          \begin{itemize}
+            \item Reproducible deployments
+          \end{itemize}
         \end{itemize}
       \end{column}
     \end{columns}
@@ -118,10 +140,12 @@
       \end{column}
       \begin{column}{.7\textwidth}
         \begin{itemize}
-          \item Package manager for Kubernetes
+          \item Package manager
           \item Configuration management
+          \begin{itemize}
+            \item Provides templates
+          \end{itemize}
           \item Deployment management
-          \item Template provider
         \end{itemize}
       \end{column}
     \end{columns}
@@ -152,10 +176,19 @@
     \item Docker images for applications
     \item CI pipeline modification
     \item Helm instead of Chef
-    \item Moving apps one by one
     \begin{itemize}
-      \item Sandbox environments first
-      \item No weird dependencies, only API communication
+      \item Change configuration generation
+    \end{itemize}
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Moving to Kubernetes on GKE}
+  \framesubtitle{The actual move}
+  \begin{itemize}
+    \item Moving apps one by one
+    \item Only API communication
+    \begin{itemize}
+      \item VPNs were helpful
     \end{itemize}
   \end{itemize}
   \end{frame}
@@ -172,6 +205,32 @@
   \end{frame}
 
   \begin{frame}{Moving to Kubernetes on GKE}
+  \framesubtitle{Pain points revisited}
+  \begin{itemize}
+    \item Long deployment times
+    \begin{itemize}
+      \item Down from 15 minutes to 1-2 minutes
+    \end{itemize}
+    \item Uncertainty of success before starting
+    \begin{itemize}
+      \item Using Docker as packaging worked
+    \end{itemize}
+    \item Deployments caused downtime
+    \begin{itemize}
+      \item No downtime deployments
+    \end{itemize}
+    \item High cost
+    \begin{itemize}
+      \item Lowered
+    \end{itemize}
+    \item Not automated
+    \begin{itemize}
+      \item Automated (after some time)
+    \end{itemize}
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Moving to Kubernetes on GKE}
   \framesubtitle{No happy end}
   \begin{itemize}
     \item Bugs!
@@ -179,18 +238,17 @@
       \item Nodes crashing due to misconfigured journalctl
       \item Frequent networking problems
     \end{itemize}
+    \item Bad support
     \item Management by Google
     \begin{itemize}
-      \item No way of accessing the machine
-      \item Doesn't work? Too bad
+      \item No way of accessing the API master machine
     \end{itemize}
     \item Inflexible configuration
     \begin{itemize}
       \item Not possible to turn on alpha features
       \item Not possible to change node configuration
-      \item Pulling an image before attaching a~node is hard
     \end{itemize}
-  \item Waiting for Kubernetes security updates (CVE-2017-1002101 and it's 4 days)
+  \item Waiting for Kubernetes security updates
   \end{itemize}
   \end{frame}
 
@@ -198,9 +256,18 @@
 
   \begin{frame}{Moving to Kubernetes on AWS}
   \framesubtitle{Enter kops}
-  \begin{itemize}
-    \item A~Kubernetes cluster bootstrapping utility
-  \end{itemize}
+  \begin{columns}[c]
+    \begin{column}{.3\textwidth}
+      \includegraphics[width=4cm]{images/kops_logo.png}
+    \end{column}
+    \begin{column}{.7\textwidth}
+      \begin{itemize}
+        \item Cluster bootstrapping utility
+        \item Lifecycle management
+        \item Very flexible
+      \end{itemize}
+    \end{column}
+  \end{columns}
   \end{frame}
 
   \begin{frame}{Moving to Kubernetes on AWS}
@@ -217,6 +284,18 @@
       \item Container registry - \textbf{Amazon ECR}
       \item AWS and GKE load balancers behave differently
       \item Use EBS instead of Google disks
+    \end{itemize}
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Moving to Kubernetes on AWS}
+  \framesubtitle{End result}
+  \begin{itemize}
+    \item It's stable!
+    \bigskip
+    \item Minor issues
+    \begin{itemize}
+      \item EBS volumes get stuck on mount
     \end{itemize}
   \end{itemize}
   \end{frame}
