@@ -1,4 +1,4 @@
-\documentclass[14pt]{beamer}
+\documentclass[17pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
@@ -7,8 +7,8 @@
 \lstset{language=csh, numbers=left, frame=single, breaklines=true, breakatwhitespace=false, basicstyle=\smaller, numberstyle=\small, basicstyle=\sffamily}
 
 %\usetheme{Warsaw}
-\title{The road to full containerization}
-\institute{\includegraphics[width=3.5cm]{images/title_logo.png}}
+\title{The road to containerization}
+\institute{\includegraphics[width=4cm]{images/title_logo.png}}
 \author{Wiesław Kielas}
 \date{\today}
 
@@ -17,7 +17,9 @@
   \usebeamercolor[fg]{title}
   \usebeamerfont{title}\inserttitle\par
   \bigskip
+  \bigskip
   \usebeamerfont{institute}\insertinstitute\par
+  \bigskip
   \bigskip
   \usebeamercolor[fg]{item}
   \usebeamerfont{author}\insertauthor\par
@@ -27,7 +29,7 @@
 \newcommand{\imageframe}[2]{{
   \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]
   {#1}}
-  \begin{frame}{\vspace{-6pt}\usebeamercolor[fg]{item}\huge{#2}}
+  \begin{frame}{\vspace{-6pt}\usebeamercolor[fg]{item}#2}
   \end{frame}
 }}
 
@@ -38,12 +40,13 @@
 
   \logo{\vspace{-6pt}\includegraphics[width=1.0cm]{images/logo.png}}
 
-  \begin{frame}{Who am I~and what is this about?}
+  \begin{frame}{What is this about?}
   \begin{itemize}
     \item About me
     \begin{itemize}
       \item DevOps engineer for Global App Testing since 2016
       \item IT professional since 2011
+      \item First time event speaker
     \end{itemize}
     \bigskip
     \item About this presentation
@@ -70,11 +73,11 @@
   \begin{frame}{GAT infrastructure}
   \framesubtitle{Pain points explained}
   \begin{itemize}
-    \item Long deployment times
-    \item Uncertainty of success before starting
-    \item Deployments caused downtime
-    \item High cost
-    \item Not automated
+    \item<1-> Long deployment times
+    \item<2-> Uncertainty of success
+    \item<3-> Deployments caused downtime
+    \item<4-> High cost
+    \item<5-> Not automated
   \end{itemize}
   \end{frame}
 
@@ -101,13 +104,13 @@
 
   \begin{frame}{Docker}
     \begin{columns}[c]
-      \begin{column}{.3\textwidth}
+      \begin{column}{.2\textwidth}
           \includegraphics[width=3cm,height=3cm]{images/docker_logo.png}
       \end{column}
-      \begin{column}{.7\textwidth}
+      \begin{column}{.8\textwidth}
         \begin{itemize}
           \item Container platform
-          \item Lightweight virtual machines
+          \item Lightweight VMs
           \item Packaging format
           \begin{itemize}
             \item Reproducible deployments
@@ -119,10 +122,10 @@
 
   \begin{frame}{Kubernetes}
     \begin{columns}[c]
-      \begin{column}{.3\textwidth}
+      \begin{column}{.2\textwidth}
           \includegraphics[width=3cm,height=3cm]{images/kubernetes_logo.png}
       \end{column}
-      \begin{column}{.7\textwidth}
+      \begin{column}{.8\textwidth}
         \begin{itemize}
           \item Container orchestration
           \item Service discovery
@@ -135,10 +138,10 @@
 
   \begin{frame}{Helm}
     \begin{columns}[c]
-      \begin{column}{.3\textwidth}
+      \begin{column}{.2\textwidth}
           \includegraphics[width=3cm,height=3cm]{images/helm_logo.png}
       \end{column}
-      \begin{column}{.7\textwidth}
+      \begin{column}{.8\textwidth}
         \begin{itemize}
           \item Package manager
           \item Configuration management
@@ -207,23 +210,23 @@
   \begin{frame}{Moving to Kubernetes on GKE}
   \framesubtitle{Pain points revisited}
   \begin{itemize}
-    \item Long deployment times
+    \item<1-> Long deployment times
     \begin{itemize}
       \item Down from 15 minutes to 1-2 minutes
     \end{itemize}
-    \item Uncertainty of success before starting
+    \item<2-> Uncertainty of success
     \begin{itemize}
       \item Using Docker as packaging worked
     \end{itemize}
-    \item Deployments caused downtime
+    \item<3-> Deployments caused downtime
     \begin{itemize}
       \item No downtime deployments
     \end{itemize}
-    \item High cost
+    \item<4-> High cost
     \begin{itemize}
       \item Lowered
     \end{itemize}
-    \item Not automated
+    \item<5-> Not automated
     \begin{itemize}
       \item Automated (after some time)
     \end{itemize}
