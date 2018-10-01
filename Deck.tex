@@ -4,6 +4,7 @@
 \usepackage{listings}
 \usepackage{themes/dbt}
 \usepackage{textpos}
+\usepackage{xcolor,pgf}
 \lstset{language=csh, numbers=left, frame=single, breaklines=true, breakatwhitespace=false, basicstyle=\smaller, numberstyle=\small, basicstyle=\sffamily}
 
 %\usetheme{Warsaw}
@@ -29,7 +30,13 @@
 \newcommand{\imageframe}[2]{{
   \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]
   {#1}}
-  \begin{frame}{\vspace{-6pt}\usebeamercolor[fg]{item}#2}
+  \begin{frame}{
+    \vspace{-6pt}\usebeamercolor[fg]{item}
+    \pgfsetfillopacity{0.8}
+    \begin{snugshade}
+    \centering #2
+    \end{snugshade}
+  }
   \end{frame}
 }}
 
@@ -42,21 +49,21 @@
 
   \begin{frame}{What is this about?}
   \begin{itemize}
-    \item About me
+    \item<1-> About me
     \begin{itemize}
-      \item DevOps engineer for Global App Testing since 2016
+      \item DevOps engineer @ GAT since 2016
       \item IT professional since 2011
       \item First time event speaker
     \end{itemize}
     \bigskip
-    \item About this presentation
+    \item<2-> About this presentation
     \begin{itemize}
       \item Quick introduction
       \item Technology stack
-      \item The migration talk
+      \item The migration and what went wrong
     \end{itemize}
     \bigskip
-    \item Things are moving fast!
+    \item<3-> Things are moving fast!
   \end{itemize}
   \end{frame}
 
@@ -84,12 +91,12 @@
   \begin{frame}{Gat infrastructure}
   \framesubtitle{What next?}
   \begin{itemize}
-    \item Improve existing infrastructure
+    \item<1-> Improve existing infrastructure
     \begin{itemize}
       \item Vendor lock-in
     \end{itemize}
     \bigskip
-    \item Move to containers
+    \item<2-> Move to containers
     \begin{itemize}
       \item Save money
       \item Lessen configuration complexity
@@ -161,9 +168,9 @@
   \begin{frame}{Moving to Kubernetes on GKE}
   \framesubtitle{Why there?}
   \begin{itemize}
-    \item Automated cluster deployment
-    \item Management by Google
-    \item Built in goodies:
+    \item<1-> Automated cluster deployment
+    \item<2-> Management by Google
+    \item<3-> Built in goodies:
     \begin{itemize}
       \item Integrated authentication
       \item Centralized logging
@@ -176,23 +183,14 @@
   \begin{frame}{Moving to Kubernetes on GKE}
   \framesubtitle{The journey}
   \begin{itemize}
-    \item Docker images for applications
-    \item CI pipeline modification
-    \item Helm instead of Chef
+    \item<1-> Docker images for applications
+    \item<2-> CI pipeline modification
+    \item<3-> Helm instead of Chef
     \begin{itemize}
       \item Change configuration generation
     \end{itemize}
-  \end{itemize}
-  \end{frame}
-
-  \begin{frame}{Moving to Kubernetes on GKE}
-  \framesubtitle{The actual move}
-  \begin{itemize}
-    \item Moving apps one by one
-    \item Only API communication
-    \begin{itemize}
-      \item VPNs were helpful
-    \end{itemize}
+    \bigskip
+    \item<4-> Moving apps one by one
   \end{itemize}
   \end{frame}
 
@@ -200,11 +198,6 @@
   \framesubtitle{The end result}
   \centering
   \includegraphics[width=8cm]{images/kubernetes_diagram.png}
-%  \begin{itemize}
-%    \item TODO: Diagram goes here
-%    \item Deployment flow unchanged
-%    \item Basic architecture stays the same
-%  \end{itemize}
   \end{frame}
 
   \begin{frame}{Moving to Kubernetes on GKE}
@@ -233,25 +226,26 @@
   \end{itemize}
   \end{frame}
 
+  \imageframe{images/dumpster_fire.jpg}{Whoops!}
+
   \begin{frame}{Moving to Kubernetes on GKE}
   \framesubtitle{No happy end}
   \begin{itemize}
-    \item Bugs!
+    \item<1-> Bugs!
     \begin{itemize}
-      \item Nodes crashing due to misconfigured journalctl
-      \item Frequent networking problems
+      \item Nodes crashing
+      \item Networking problems
     \end{itemize}
-    \item Bad support
-    \item Management by Google
+    \item<2-> Bad support
+    \item<3-> Management by Google
     \begin{itemize}
       \item No way of accessing the API master machine
     \end{itemize}
-    \item Inflexible configuration
+    \item<4-> Inflexible configuration
     \begin{itemize}
       \item Not possible to turn on alpha features
-      \item Not possible to change node configuration
     \end{itemize}
-  \item Waiting for Kubernetes security updates
+    \item<5-> Waiting for security updates
   \end{itemize}
   \end{frame}
 
@@ -276,30 +270,30 @@
   \begin{frame}{Moving to Kubernetes on AWS}
   \framesubtitle{New challenges}
   \begin{itemize}
-    \item Missing parts
+    \item<1-> Missing parts
     \begin{itemize}
-      \item Authentication integrated with the rest of their cloud - \textbf{PKI}
+      \item Integrated authentication - \textbf{PKI}
       \item Centralized logging - \textbf{Graylog}
-      \item Cluster monitoring - \textbf{Prometheus and Grafana}
+      \item Cluster monitoring - \textbf{Prometheus}
     \end{itemize}
-    \item Moving stuff
+    \item<2-> Moving stuff
     \begin{itemize}
       \item Container registry - \textbf{Amazon ECR}
-      \item AWS and GKE load balancers behave differently
+      \item Load balancers behave differently
       \item Use EBS instead of Google disks
+      \item Rewriting helper scripts
     \end{itemize}
   \end{itemize}
   \end{frame}
 
+  \imageframe{images/feels_good_man.jpg}{The end result}
+
   \begin{frame}{Moving to Kubernetes on AWS}
-  \framesubtitle{End result}
+  \framesubtitle{Lessons learned}
   \begin{itemize}
-    \item It's stable!
-    \bigskip
-    \item Minor issues
-    \begin{itemize}
-      \item EBS volumes get stuck on mount
-    \end{itemize}
+    \item<1-> Outsourcing service management gives a~big head start
+    \item<2-> Support is extremely important
+    \item<3-> Cloud agnostic design can return very quickly
   \end{itemize}
   \end{frame}
 
