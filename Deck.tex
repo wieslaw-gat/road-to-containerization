@@ -24,7 +24,7 @@
   \bigskip
   \usebeamercolor[fg]{item}
   \usebeamerfont{author}\insertauthor\par
-  \usebeamerfont{date}\insertdate\par
+  \usebeamerfont{date}October 4, 2018\par
 }
 
 \newcommand{\imageframe}[2]{{
@@ -51,19 +51,18 @@
   \begin{itemize}
     \item<1-> About me
     \begin{itemize}
-      \item DevOps engineer @ GAT since 2016
+      \item Started at GAT two years ago
       \item IT professional since 2011
+      \item Only DevOps engineer
       \item First time event speaker
     \end{itemize}
     \bigskip
-    \item<2-> About this presentation
+    \item<2-> What will I~talk about?
     \begin{itemize}
-      \item Quick introduction
-      \item Technology stack
-      \item The migration and what went wrong
+      \item Why throw the Chef stack away?
+      \item How containers helped?
+      \item What did we learn?
     \end{itemize}
-    \bigskip
-    \item<3-> Things are moving fast!
   \end{itemize}
   \end{frame}
 
@@ -71,29 +70,27 @@
 
   \imageframe{images/ancient_history.jpg}{Ancient history}
 
-  \begin{frame}{GAT infrastructure}
-  \framesubtitle{The year is 2016}
+  \begin{frame}{The year is 2016}
   \centering
-  \includegraphics[width=8cm]{images/opsworks_diagram.png}
+  \includegraphics[width=11cm]{images/opsworks_diagram.png}
   \end{frame}
 
-  \begin{frame}{GAT infrastructure}
-  \framesubtitle{Pain points explained}
+  \begin{frame}{Pain points explained}
   \begin{itemize}
     \item<1-> Long deployment times
     \item<2-> Uncertainty of success
     \item<3-> Deployments caused downtime
-    \item<4-> High cost
+    \item<4-> Wasting resources = high cost
     \item<5-> Not automated
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Gat infrastructure}
-  \framesubtitle{What next?}
+  \begin{frame}{What next?}
   \begin{itemize}
     \item<1-> Improve existing infrastructure
     \begin{itemize}
       \item Vendor lock-in
+      \item Hard to lower costs
     \end{itemize}
     \bigskip
     \item<2-> Move to containers
@@ -151,9 +148,9 @@
       \begin{column}{.8\textwidth}
         \begin{itemize}
           \item Package manager
-          \item Configuration management
+          \item Provides templates
           \begin{itemize}
-            \item Provides templates
+            \item Configuration management
           \end{itemize}
           \item Deployment management
         \end{itemize}
@@ -165,12 +162,12 @@
 
   \imageframe{images/migrating_cranes.jpg}{Migrating to Kubernetes}
 
-  \begin{frame}{Moving to Kubernetes on GKE}
-  \framesubtitle{Why there?}
+  \begin{frame}{Why move to GKE?}
   \begin{itemize}
-    \item<1-> Automated cluster deployment
-    \item<2-> Management by Google
-    \item<3-> Built in goodies:
+    \item<1-> Kubernetes as a~Service
+    \item<2-> Automates the management plane
+    \item<3-> Automated the scary cluster deployment
+    \item<4-> Built in goodies:
     \begin{itemize}
       \item Integrated authentication
       \item Centralized logging
@@ -180,8 +177,7 @@
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on GKE}
-  \framesubtitle{The journey}
+  \begin{frame}{The journey}
   \begin{itemize}
     \item<1-> Docker images for applications
     \item<2-> CI pipeline modification
@@ -194,14 +190,12 @@
   \end{itemize}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on GKE}
-  \framesubtitle{The end result}
+  \begin{frame}{The end result}
   \centering
-  \includegraphics[width=8cm]{images/kubernetes_diagram.png}
+  \includegraphics[width=11cm]{images/kubernetes_diagram.png}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on GKE}
-  \framesubtitle{Pain points revisited}
+  \begin{frame}{Pain points revisited}
   \begin{itemize}
     \item<1-> Long deployment times
     \begin{itemize}
@@ -209,11 +203,11 @@
     \end{itemize}
     \item<2-> Uncertainty of success
     \begin{itemize}
-      \item Using Docker as packaging worked
+      \item Deployments were predictable
     \end{itemize}
     \item<3-> Deployments caused downtime
     \begin{itemize}
-      \item No downtime deployments
+      \item Rolling deployments = no downtime
     \end{itemize}
     \item<4-> High cost
     \begin{itemize}
@@ -228,8 +222,7 @@
 
   \imageframe{images/dumpster_fire.jpg}{Whoops!}
 
-  \begin{frame}{Moving to Kubernetes on GKE}
-  \framesubtitle{No happy end}
+  \begin{frame}{No happy end}
   \begin{itemize}
     \item<1-> Bugs!
     \begin{itemize}
@@ -237,13 +230,13 @@
       \item Networking problems
     \end{itemize}
     \item<2-> Bad support
-    \item<3-> Management by Google
+    \item<3-> Kubernetes as a~Service
     \begin{itemize}
-      \item No way of accessing the API master machine
+      \item Frustrating when it doesn't work
     \end{itemize}
     \item<4-> Inflexible configuration
     \begin{itemize}
-      \item Not possible to turn on alpha features
+      \item Caching images possible with own CM
     \end{itemize}
     \item<5-> Waiting for security updates
   \end{itemize}
@@ -251,8 +244,7 @@
 
   \imageframe{images/returning_cranes.jpg}{Migrating back to AWS}
 
-  \begin{frame}{Moving to Kubernetes on AWS}
-  \framesubtitle{Enter kops}
+  \begin{frame}{Enter kops}
   \begin{columns}[c]
     \begin{column}{.3\textwidth}
       \includegraphics[width=4cm]{images/kops_logo.png}
@@ -262,13 +254,17 @@
         \item Cluster bootstrapping utility
         \item Lifecycle management
         \item Very flexible
+        \begin{itemize}
+          \item Custom IAM roles
+          \item Caching images
+          \item Changing daemon configuration
+        \end{itemize}
       \end{itemize}
     \end{column}
   \end{columns}
   \end{frame}
 
-  \begin{frame}{Moving to Kubernetes on AWS}
-  \framesubtitle{New challenges}
+  \begin{frame}{New challenges}
   \begin{itemize}
     \item<1-> Missing parts
     \begin{itemize}
@@ -278,18 +274,17 @@
     \end{itemize}
     \item<2-> Moving stuff
     \begin{itemize}
-      \item Container registry - \textbf{Amazon ECR}
+      \item Rewriting helper scripts
       \item Load balancers behave differently
       \item Use EBS instead of Google disks
-      \item Rewriting helper scripts
+      \item Container registry - \textbf{Amazon ECR}
     \end{itemize}
   \end{itemize}
   \end{frame}
 
   \imageframe{images/feels_good_man.jpg}{The end result}
 
-  \begin{frame}{Moving to Kubernetes on AWS}
-  \framesubtitle{Lessons learned}
+  \begin{frame}{Lessons learned}
   \begin{itemize}
     \item<1-> Outsourcing service management gives a~big head start
     \item<2-> Support is extremely important
